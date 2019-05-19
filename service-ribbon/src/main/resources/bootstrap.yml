@@ -3,5 +3,5 @@ spring:
     name: service-ribbon
   cloud:
     config:
-      uri: http://localhost:9009/
+      uri: http://config-server:9009/
       fail-fast: true
