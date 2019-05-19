@@ -1,0 +1,29 @@
+config-server:
+  image: microservice/config-server
+  hostname: localhost
+  ports:
+    - "9009:9009"
+
+eureka-server:
+  image: microservice/eureka-server
+  hostname: localhost
+  ports:
+    - "3333:3333"
+
+service-hi:
+  image: microservice/service-hi
+  hostname: localhost
+  ports:
+    - "8000:8000"
+  links:
+    - "config-server"
+    - "eureka-server"
+    
+service-ribbon:
+  image: microservice/service-ribbon
+  hostname: localhost
+  ports:
+    - "9000:9000"
+  links:
+    - "config-server"
+    - "eureka-server"

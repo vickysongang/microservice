@@ -1,0 +1,19 @@
+server:
+  port: 9009
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      label: master
+      server:
+        native:
+          search-locations: classpath:/shared
+        git:
+          uri: https://github.com/vickysongang/SpringcloudConfig
+          username: vickysongang@gmail.com
+          password: Sa8798101149
+          search-paths: /**
+          default-label: master
+  profiles:
+    active: native

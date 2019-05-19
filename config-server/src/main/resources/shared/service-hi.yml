@@ -1,0 +1,31 @@
+server:
+  port: 8000
+eureka:
+  instance:
+     prefer-ip-address: true
+     metadata-map:
+       my-metadata: testdata
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://eureka:eureka111@peer1:3333/eureka/,http://eureka:eureka111@peer2:4444/eureka/,http://eureka:eureka111@peer3:5555/eureka/
+spring:
+  security:
+    basic:
+      enabled: false
+    user:
+      name: eureka
+      password: eureka111
+  zipkin:
+    base-url: http://localhost:9411/
+---
+spring:
+  profiles: client1
+server:
+  port: 8000
+---
+spring:
+  profiles: client2
+server:
+  port: 8001

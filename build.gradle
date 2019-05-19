@@ -1,0 +1,60 @@
+group = 'com.sa.micro'
+version = '0.0.1-SNAPSHOT'
+description = 'microservice'
+apply plugin: 'java'
+sourceCompatibility = '1.8'
+
+buildscript {
+    ext {
+        springBootVersion = '2.0.3.RELEASE'
+    }
+    repositories {
+        mavenLocal()
+    	maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("se.transmode.gradle:gradle-docker:1.2")
+    }
+}
+
+ext {
+	springCloudVersion = 'Finchley.RELEASE'
+}
+
+allprojects {
+	repositories {
+	    mavenLocal()
+	    maven { url 'http://maven.aliyun.com/nexus/content/groups/public/' }
+	    maven { url = 'http://repo.maven.apache.org/maven2' }
+	}
+	
+	tasks.withType(JavaCompile) {
+    	options.encoding = 'UTF-8'
+	}
+}
+
+subprojects {
+    apply plugin: 'java'
+	apply plugin: 'org.springframework.boot'
+    apply plugin: 'io.spring.dependency-management'
+    apply plugin: 'docker'
+    
+    dependencies {
+        compile('org.springframework.cloud:spring-cloud-starter')
+    	testCompile('org.springframework.boot:spring-boot-starter-test')
+    }
+    
+    dependencyManagement {
+        imports {
+            //spring bom helps us to declare dependencies without specifying version numbers.
+            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+        }
+    }
+    
+    jar {
+        manifest.attributes provider: 'gradle'
+    }
+}
+

@@ -1,0 +1,13 @@
+group = 'com.sa.zuul'
+version = '0.0.1-SNAPSHOT'
+description = 'service-zuul'
+sourceCompatibility = '1.8'
+
+dependencies {
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client:2.0.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web:2.0.3.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-starter-netflix-zuul:2.0.0.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-starter-config:2.0.0.RELEASE'
+    compile 'org.springframework.cloud:spring-cloud-starter-bus-amqp:2.0.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-actuator:2.0.3.RELEASE'
+}

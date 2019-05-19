@@ -1,0 +1,21 @@
+server:
+  port: 9011
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+          lowerCaseServiceId: true
+      routes:
+      - id: service-hi
+        uri: lb://SERVICE-HI
+        predicates:
+          - Path=/demo/**
+        filters:
+          - StripPrefix=1
+          - RequestTime=true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://eureka:eureka111@peer1:3333/eureka/,http://eureka:eureka111@peer2:4444/eureka/,http://eureka:eureka111@peer3:5555/eureka/

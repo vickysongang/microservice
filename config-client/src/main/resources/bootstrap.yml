@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: config-client
+  cloud:
+    config:
+#      profile: dev
+#      label: master
+      uri: http://localhost:9009/
+#      discovery:
+#        enabled: true
+#        service-id: CONFIG-SERVER
+      fail-fast: true
