@@ -15,17 +15,7 @@ git clone https://github.com/vickysongang/microservice.git
   gradle build
   ```
   
-## Step3 生成docker镜像
-  > 安装docker
-  
-  > 此步骤依赖于每个工程下的Dockerfile文件,目前只部署了config-server,eureka-server,service-hi,service-ribbon四个工程。
-  
-  ```
-  chmod +x buildDockerImage.sh
-  sh buildDockerImage.sh
-  ```
-  
-## Step4 运行docker容器
+## Step3 运行docker容器
 > 如果是本地单机运行，在hosts文件里配置 {ip} config-server peer1 peer2 peer3, 如 192.168.0.101 config-server peer1 peer2 peer3,因为在工程里有些地方配置的hostname为上面几个。
 > 
 > 此步骤依赖于根目录下的docker-compose.yml
@@ -34,7 +24,7 @@ git clone https://github.com/vickysongang/microservice.git
 docker-compose up -d
 ```
 
-## Step5 验证
+## Step4 验证
 
 > 访问http://localhost:9009/service-hi.yml验证config-server是否部署成功;
 > 
